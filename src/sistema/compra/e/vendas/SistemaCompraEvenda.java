@@ -27,17 +27,55 @@ public class SistemaCompraEvenda extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnProduto = new javax.swing.JButton();
+        btnClientes = new javax.swing.JButton();
+        btnEntrada = new javax.swing.JButton();
+        btnSaida = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnProduto.setText("cadastro produtos");
+
+        btnClientes.setText("cadastro clientes");
+
+        btnEntrada.setText("nota entrada");
+
+        btnSaida.setText("nota saida");
+
+        jLabel1.setText("escolha uma das opções");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(btnProduto)
+                .addGap(33, 33, 33)
+                .addComponent(btnClientes)
+                .addGap(31, 31, 31)
+                .addComponent(btnEntrada)
+                .addGap(31, 31, 31)
+                .addComponent(btnSaida)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(249, 249, 249))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(jLabel1)
+                .addGap(90, 90, 90)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnProduto)
+                    .addComponent(btnClientes)
+                    .addComponent(btnEntrada)
+                    .addComponent(btnSaida))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,5 +117,10 @@ public class SistemaCompraEvenda extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClientes;
+    private javax.swing.JButton btnEntrada;
+    private javax.swing.JButton btnProduto;
+    private javax.swing.JButton btnSaida;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

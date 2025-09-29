@@ -3,27 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistema.compra.e.vendas;
+package sistema.compra.e.vendas.entity;
 
 /**
  *
  * @author 2830482411031
  */
-public class Fornecedor {
-    private int cod_fornecedor;
+public class Cliente {
+    
+    private int cod_Cliente;
     private String nome;
-    private String nome_fantasia;
-    private String cnpj;
     private String endereco;
     private String email;
     private String telefone;
 
-    public int getCod_fornecedor() {
-        return cod_fornecedor;
+    public int getCod_Cliente() {
+        return cod_Cliente;
     }
 
-    public void setCod_fornecedor(int cod_fornecedor) {
-        this.cod_fornecedor = cod_fornecedor;
+    public void setCod_Cliente(int cod_Cliente) {
+        this.cod_Cliente = cod_Cliente;
     }
 
     public String getNome() {
@@ -32,22 +31,6 @@ public class Fornecedor {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getNome_fantasia() {
-        return nome_fantasia;
-    }
-
-    public void setNome_fantasia(String nome_fantasia) {
-        this.nome_fantasia = nome_fantasia;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
     }
 
     public String getEndereco() {
@@ -74,18 +57,15 @@ public class Fornecedor {
         this.telefone = telefone;
     }
 
-    public Fornecedor(int cod_fornecedor, String nome, String nome_fantasia, String cnpj, String endereco, String email, String telefone) {
-        this.cod_fornecedor = cod_fornecedor;
+    public Cliente(int cod_Cliente, String nome, String endereco, String email, String telefone) {
+        this.cod_Cliente = cod_Cliente;
         this.nome = nome;
-        this.nome_fantasia = nome_fantasia;
-        this.cnpj = cnpj;
         this.endereco = endereco;
         this.email = email;
         this.telefone = telefone;
     }
     
-    
-    public Fornecedor(){
+    public Cliente(){
         
     }
 }
