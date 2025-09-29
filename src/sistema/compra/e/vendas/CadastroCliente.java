@@ -9,12 +9,12 @@ package sistema.compra.e.vendas;
  *
  * @author 2830482411031
  */
-public class CadastroProduto extends javax.swing.JFrame {
+public class CadastroCliente extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastroProduto
      */
-    public CadastroProduto() {
+    public CadastroCliente() {
         initComponents();
     }
 
