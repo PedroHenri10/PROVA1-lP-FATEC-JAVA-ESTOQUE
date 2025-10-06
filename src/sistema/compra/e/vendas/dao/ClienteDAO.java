@@ -22,7 +22,7 @@ public class ClienteDAO {
         this.conn = this.conexao.getConexao();
     }
     
-    public void inserir(Cliente cliente){
+    public void inserirCliente(Cliente cliente){
         String sql = "INSERT INTO cliente (cod_Cliente, nome, endereco, email, telefone) VALUES (?,?,?,?);";
         try{
             PreparedStatement stmt = this.conn.prepareStatement(sql);

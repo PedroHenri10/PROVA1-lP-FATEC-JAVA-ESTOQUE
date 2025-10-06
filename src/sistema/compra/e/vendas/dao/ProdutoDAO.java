@@ -5,10 +5,36 @@
  */
 package sistema.compra.e.vendas.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import sistema.compra.e.vendas.entity.Produto;
+import sistema.compra.e.vendas.util.Conexao;
+
 /**
  *
  * @author 2830482411031
  */
 public class ProdutoDAO {
+    private Conexao conexao;
+    private Connection conn;
     
+    public ProdutoDAO(){
+        this.conexao = new Conexao();
+        this.conn = this.conexao.getConexao();
+    }
+    
+    public void inserirProduto(Produto produto){
+        String sql = "INSERT INTO cliente (cod_produto, nome, descricao, preco_venda, qtd_estoque) VALUES (?,?,?,?,?);";
+        try{
+            PreparedStatement stmt = this.conn.prepareStatement(sql);
+            stmt.setInt(1, produto.getCod_Produto());
+            stmt.setString(2, produto.getNome());
+            stmt.setString(3, produto.getDescricao());
+            stmt.setFloat(4, produto.getPreco_venda());            
+            stmt.setInt(5, produto.getQtd_estoque());   
+        }catch(SQLException ex){
+            System.out.println("Erro ao inserir Produto: " +ex.getMessage());
+        }
+    }
 }
