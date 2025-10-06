@@ -34,7 +34,8 @@ public class FornecedorDAO {
             stmt.setString(4, fornecedor.getCnpj());            
             stmt.setString(5, fornecedor.getEndereco());
             stmt.setString(6, fornecedor.getEmail());
-            stmt.setString(7, fornecedor.getTelefone());            
+            stmt.setString(7, fornecedor.getTelefone());
+            stmt.execute();            
         }catch(SQLException ex){
             System.out.println("Erro ao inserir Fornecedor: " +ex.getMessage());
         }

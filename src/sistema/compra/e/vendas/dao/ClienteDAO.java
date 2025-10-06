@@ -23,14 +23,16 @@ public class ClienteDAO {
     }
     
     public void inserirCliente(Cliente cliente){
-        String sql = "INSERT INTO cliente (cod_Cliente, nome, endereco, email, telefone) VALUES (?,?,?,?);";
+        String sql = "INSERT INTO cliente (cod_Cliente, nome, endereco, email, telefone) VALUES (?,?,?,?,?);";
         try{
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setInt(1, cliente.getCod_Cliente());
             stmt.setString(2, cliente.getNome());
             stmt.setString(3, cliente.getEndereco());
             stmt.setString(4, cliente.getEmail());
-            stmt.setString(5, cliente.getTelefone());            
+            stmt.setString(5, cliente.getTelefone());
+            
+            stmt.execute();
         }catch(SQLException ex){
             System.out.println("Erro ao inserir cliente: " +ex.getMessage());
         }

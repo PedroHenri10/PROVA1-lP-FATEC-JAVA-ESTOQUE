@@ -32,7 +32,8 @@ public class ProdutoDAO {
             stmt.setString(2, produto.getNome());
             stmt.setString(3, produto.getDescricao());
             stmt.setFloat(4, produto.getPreco_venda());            
-            stmt.setInt(5, produto.getQtd_estoque());   
+            stmt.setInt(5, produto.getQtd_estoque());  
+            stmt.execute();
         }catch(SQLException ex){
             System.out.println("Erro ao inserir Produto: " +ex.getMessage());
         }

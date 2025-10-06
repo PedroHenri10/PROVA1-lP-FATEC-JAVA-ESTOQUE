@@ -5,6 +5,9 @@
  */
 package sistema.compra.e.vendas.view;
 
+import sistema.compra.e.vendas.dao.ClienteDAO;
+import sistema.compra.e.vendas.entity.Cliente;
+
 /**
  *
  * @author 2830482411031
@@ -68,6 +71,11 @@ public class CadastroCliente extends javax.swing.JFrame {
         jLabel8.setText("telefone");
 
         btnSalvar.setText("salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("limpar campos");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +165,11 @@ public class CadastroCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        // TODO add your handling code here:
+        txt_codCliente.setText("");
+        txt_cliente.setText("");
+        txt_enderecoCliente.setText("");
+        txt_emailCliente.setText("");
+        txt_telefoneCliente.setText("");
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void txt_emailClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_emailClienteActionPerformed
@@ -167,6 +179,20 @@ public class CadastroCliente extends javax.swing.JFrame {
     private void txt_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_clienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_clienteActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        Cliente cli = new Cliente();
+        
+        cli.setCod_Cliente(Integer.parseInt(txt_codCliente.getText()));
+        cli.setNome(txt_cliente.getText());
+        cli.setEndereco(txt_enderecoCliente.getText());
+        cli.setEmail(txt_emailCliente.getText());
+        cli.setTelefone(txt_telefoneCliente.getText());
+        
+        ClienteDAO cliDAO = new ClienteDAO();
+        cliDAO.inserirCliente(cli);
+        btnLimparActionPerformed(evt);
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * @param args the command line arguments

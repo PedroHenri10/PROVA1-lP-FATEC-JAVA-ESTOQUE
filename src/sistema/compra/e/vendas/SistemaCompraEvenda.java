@@ -5,6 +5,8 @@
  */
 package sistema.compra.e.vendas;
 
+import sistema.compra.e.vendas.view.CadastroCliente;
+
 /**
  *
  * @author 2830482411031
@@ -51,6 +53,11 @@ public class SistemaCompraEvenda extends javax.swing.JFrame {
         });
 
         btnClientes.setText("cadastro clientes");
+        btnClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClientesActionPerformed(evt);
+            }
+        });
 
         btnEntrada.setText("nota entrada");
 
@@ -216,6 +223,12 @@ public class SistemaCompraEvenda extends javax.swing.JFrame {
     private void btnCadastroFornecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroFornecActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCadastroFornecActionPerformed
+
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+        CadastroCliente cadastroCliente = new CadastroCliente();
+        cadastroCliente.setLocationRelativeTo(this);
+        cadastroCliente.setVisible(true);
+    }//GEN-LAST:event_btnClientesActionPerformed
 
     /**
      * @param args the command line arguments
