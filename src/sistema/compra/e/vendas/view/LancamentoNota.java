@@ -5,6 +5,14 @@
  */
 package sistema.compra.e.vendas.view;
 
+import java.awt.List;
+import sistema.compra.e.vendas.dao.ClienteDAO;
+import sistema.compra.e.vendas.dao.FornecedorDAO;
+import sistema.compra.e.vendas.dao.ProdutoDAO;
+import sistema.compra.e.vendas.entity.Cliente;
+import sistema.compra.e.vendas.entity.Fornecedor;
+import sistema.compra.e.vendas.entity.Produto;
+
 /**
  *
  * @author 2830482411031
@@ -17,6 +25,35 @@ public class LancamentoNota extends javax.swing.JFrame {
     public LancamentoNota() {
         initComponents();
     }
+    
+        private void carregarCombos(String tipoNota) {  
+            cmb_cod.removeAllItems();
+            cmb_produto.removeAllItems();
+
+            if ("E".equals(tipoNota)) { 
+                FornecedorDAO fornecedorDAO = new FornecedorDAO();
+                List<Fornecedor> fornecedores = fornecedorDAO.listarTodos();
+                for (Fornecedor f : fornecedores) {
+                    cmb_cod.addItem(String.valueOf(f.getCod_fornecedor())); 
+                }
+            } else if ("S".equals(tipoNota)) { 
+                ClienteDAO clienteDAO = new ClienteDAO();
+                List<Cliente> clientes = clienteDAO.listarTodos();
+                for (Cliente c : clientes) {
+                    cmb_cod.addItem(String.valueOf(c.getCod_Cliente())); 
+                }
+            }
+
+            ProdutoDAO produtoDAO = new ProdutoDAO();
+            List<Produto> produtos = produtoDAO.listarTodos();
+            for (Produto p : produtos) {
+                cmb_produto.addItem(String.valueOf(p.getCod_Produto())); 
+            }
+
+            cmb_cod.setSelectedIndex(0);
+            cmb_produto.setSelectedIndex(0);
+        }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -129,7 +166,10 @@ public class LancamentoNota extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        // TODO add your handling code here:
+        txt_data.setText("");
+        txt_quantidadeNota.setText("");
+        cmb_cod.setSelectedIndex(0);
+        cmb_produto.setSelectedIndex(0);
     }//GEN-LAST:event_btnLimparActionPerformed
 
     /**
