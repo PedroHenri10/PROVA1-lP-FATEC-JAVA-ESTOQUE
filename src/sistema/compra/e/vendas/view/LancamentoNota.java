@@ -22,21 +22,25 @@ public class LancamentoNota extends javax.swing.JFrame {
     /**
      * Creates new form CadastroProduto
      */
-    public LancamentoNota() {
+    private String tipo;
+    
+    public LancamentoNota(String tipo) {
         initComponents();
+        this.tipo = tipo;
+        carregarCombos(tipo);
     }
     
         private void carregarCombos(String tipoNota) {  
             cmb_cod.removeAllItems();
             cmb_produto.removeAllItems();
 
-            if ("E".equals(tipoNota)) { 
+            if ("Entrada".equals(tipoNota)) { 
                 FornecedorDAO fornecedorDAO = new FornecedorDAO();
                 List<Fornecedor> fornecedores = fornecedorDAO.listarTodos();
                 for (Fornecedor f : fornecedores) {
                     cmb_cod.addItem(String.valueOf(f.getCod_fornecedor())); 
                 }
-            } else if ("S".equals(tipoNota)) { 
+            } else if ("Saida".equals(tipoNota)) { 
                 ClienteDAO clienteDAO = new ClienteDAO();
                 List<Cliente> clientes = clienteDAO.listarTodos();
                 for (Cliente c : clientes) {

@@ -8,6 +8,7 @@ package sistema.compra.e.vendas;
 import sistema.compra.e.vendas.view.CadastroCliente;
 import sistema.compra.e.vendas.view.CadastroFornecedor;
 import sistema.compra.e.vendas.view.CadastroProduto;
+import sistema.compra.e.vendas.view.LancamentoNota;
 
 /**
  *
@@ -247,11 +248,13 @@ public class SistemaCompraEvenda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaActionPerformed
-        // TODO add your handling code here:
+        LancamentoNota telaEntrada = new LancamentoNota("Entrada");
+        telaEntrada.setVisible(true);
     }//GEN-LAST:event_btnEntradaActionPerformed
 
     private void btnSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaidaActionPerformed
-        // TODO add your handling code here:
+        LancamentoNota telaEntrada = new LancamentoNota("Saida");
+        telaEntrada.setVisible(true);
     }//GEN-LAST:event_btnSaidaActionPerformed
 
     /**
