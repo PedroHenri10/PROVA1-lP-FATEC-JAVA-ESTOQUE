@@ -62,8 +62,18 @@ public class SistemaCompraEvenda extends javax.swing.JFrame {
         });
 
         btnEntrada.setText("nota entrada");
+        btnEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntradaActionPerformed(evt);
+            }
+        });
 
         btnSaida.setText("nota saida");
+        btnSaida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaidaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("menu estoque");
 
@@ -235,6 +245,14 @@ public class SistemaCompraEvenda extends javax.swing.JFrame {
         cadastroCliente.setLocationRelativeTo(this);
         cadastroCliente.setVisible(true);
     }//GEN-LAST:event_btnClientesActionPerformed
+
+    private void btnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEntradaActionPerformed
+
+    private void btnSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSaidaActionPerformed
 
     /**
      * @param args the command line arguments
