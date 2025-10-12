@@ -40,5 +40,33 @@ public class FornecedorDAO {
             System.out.println("Erro ao inserir Fornecedor: " +ex.getMessage());
         }
     }
+
+    public List<Fornecedor> listarTodos() {
+        List<Fornecedor> fornecedores = new ArrayList<>();
+        String sql = "SELECT * FROM fornecedor;";
+        
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                Fornecedor f = new Fornecedor();
+                f.setCod_fornecedor(rs.getInt("cod_fornecedor"));
+                f.setNome(rs.getString("nome"));
+                f.setNome_fantasia(rs.getString("nome_fantasia"));
+                f.setCnpj(rs.getString("cnpj"));
+                f.setEndereco(rs.getString("endereco"));
+                f.setEmail(rs.getString("email"));
+                f.setTelefone(rs.getString("telefone"));
+                
+                fornecedores.add(f);
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Erro ao listar fornecedores: " + ex.getMessage());
+        }
+        
+        return fornecedores;
+    }
     
 }
