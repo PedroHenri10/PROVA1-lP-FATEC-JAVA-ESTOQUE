@@ -5,6 +5,9 @@
  */
 package sistema.compra.e.vendas.view;
 
+import sistema.compra.e.vendas.dao.FornecedorDAO;
+import sistema.compra.e.vendas.entity.Fornecedor;
+
 /**
  *
  * @author 2830482411031
@@ -72,6 +75,11 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         jLabel8.setText("telefone");
 
         btnSalvar.setText("salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("limpar campos");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +164,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(txt_nomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(3, 3, 3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,7 +200,13 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        // TODO add your handling code here:
+        txt_codFornecedor.setText("");
+        txt_nomeFornecedor.setText("");
+        txt_nomeFantasia.setText("");
+        txt_cnpj.setText("");
+        txt_enderecoFornecedor.setText("");
+        txt_emailFornecedor.setText("");
+        txt_telefoneFornecedor.setText("");
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void txt_emailFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_emailFornecedorActionPerformed
@@ -207,6 +220,23 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private void txt_nomeFantasiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nomeFantasiaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nomeFantasiaActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        Fornecedor fornecedor = new Fornecedor();
+
+        fornecedor.setCod_fornecedor(Integer.parseInt(txt_codFornecedor.getText()));
+        fornecedor.setNome(txt_nomeFornecedor.getText());
+        fornecedor.setNome_fantasia(txt_nomeFantasia.getText());
+        fornecedor.setCnpj(txt_cnpj.getText());
+        fornecedor.setEndereco(txt_enderecoFornecedor.getText());
+        fornecedor.setEmail(txt_emailFornecedor.getText());
+        fornecedor.setTelefone(txt_telefoneFornecedor.getText());
+
+        FornecedorDAO fornDAO = new FornecedorDAO();
+        fornDAO.inserirFornecedor(fornecedor);
+
+        btnLimparActionPerformed(evt);
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * @param args the command line arguments

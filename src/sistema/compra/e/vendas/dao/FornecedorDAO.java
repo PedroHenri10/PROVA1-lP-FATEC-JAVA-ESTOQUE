@@ -25,7 +25,7 @@ public class FornecedorDAO {
     }
     
     public void inserirFornecedor(Fornecedor fornecedor){
-        String sql = "INSERT INTO cliente (cod_Fornecedor, nome, nome_fantasia, cnpj, endereco, email, telefone) VALUES (?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO fornecedor (cod_fornecedor, nome, nome_fantasia, cnpj, endereco, email, telefone) VALUES (?,?,?,?,?,?,?);";
         try{
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setInt(1, fornecedor.getCod_fornecedor());
