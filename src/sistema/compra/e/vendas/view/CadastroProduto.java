@@ -5,6 +5,9 @@
  */
 package sistema.compra.e.vendas.view;
 
+import sistema.compra.e.vendas.dao.ProdutoDAO;
+import sistema.compra.e.vendas.entity.Produto;
+
 /**
  *
  * @author 2830482411031
@@ -62,6 +65,11 @@ public class CadastroProduto extends javax.swing.JFrame {
         });
 
         btnSalvar.setText("salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("limpar campos");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +139,6 @@ public class CadastroProduto extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txt_preco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(txt_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -146,12 +153,31 @@ public class CadastroProduto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        // TODO add your handling code here:
+        txt_codProduto.setText("");
+        txt_nome.setText("");
+        txt_descricao.setText("");
+        txt_preco.setText("");
+        txt_quantidade.setText("");
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void txt_descricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_descricaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_descricaoActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        Produto p = new Produto();
+
+        p.setCod_Produto(Integer.parseInt(txt_codProduto.getText()));
+        p.setNome(txt_nome.getText());
+        p.setDescricao(txt_descricao.getText());
+        p.setPreco_venda(Float.parseFloat(txt_preco.getText()));
+        p.setQtd_estoque(Integer.parseInt(txt_quantidade.getText()));
+
+        ProdutoDAO pDAO = new ProdutoDAO();
+        pDAO.inserirProduto(p);
+
+        btnLimparActionPerformed(evt);
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * @param args the command line arguments

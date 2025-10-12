@@ -25,7 +25,7 @@ public class ProdutoDAO {
     }
     
     public void inserirProduto(Produto produto){
-        String sql = "INSERT INTO cliente (cod_produto, nome, descricao, preco_venda, qtd_estoque) VALUES (?,?,?,?,?);";
+        String sql = "INSERT INTO produto (cod_produto, nome, descricao, preco_venda, qtd_estoque) VALUES (?,?,?,?,?);";
         try{
             PreparedStatement stmt = this.conn.prepareStatement(sql);
             stmt.setInt(1, produto.getCod_Produto());

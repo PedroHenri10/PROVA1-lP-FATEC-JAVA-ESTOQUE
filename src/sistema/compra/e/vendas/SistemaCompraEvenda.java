@@ -7,6 +7,7 @@ package sistema.compra.e.vendas;
 
 import sistema.compra.e.vendas.view.CadastroCliente;
 import sistema.compra.e.vendas.view.CadastroFornecedor;
+import sistema.compra.e.vendas.view.CadastroProduto;
 
 /**
  *
@@ -190,7 +191,9 @@ public class SistemaCompraEvenda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
-        // TODO add your handling code here:
+        CadastroProduto cadastroProduto  = new CadastroProduto();
+        cadastroProduto.setLocationRelativeTo(this);
+        cadastroProduto.setVisible(true);
     }//GEN-LAST:event_btnProdutoActionPerformed
 
     private void btnListarProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarProdutosActionPerformed
