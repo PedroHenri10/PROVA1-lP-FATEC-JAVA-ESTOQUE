@@ -37,5 +37,31 @@ public class ClienteDAO {
             System.out.println("Erro ao inserir cliente: " +ex.getMessage());
         }
     }
+
+    public List<Cliente> listarTodos() {
+        List<Cliente> clientes = new ArrayList<>();
+        String sql = "SELECT * FROM cliente;";
+        
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                Cliente c = new Cliente();
+                c.setCod_Cliente(rs.getInt("cod_Cliente"));
+                c.setNome(rs.getString("nome"));
+                c.setEndereco(rs.getString("endereco"));
+                c.setEmail(rs.getString("email"));
+                c.setTelefone(rs.getString("telefone"));
+                
+                clientes.add(c);
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Erro ao listar clientes: " + ex.getMessage());
+        }
+        
+        return clientes;
+    }
     
 }
