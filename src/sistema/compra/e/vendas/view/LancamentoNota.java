@@ -182,7 +182,7 @@ public class LancamentoNota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
