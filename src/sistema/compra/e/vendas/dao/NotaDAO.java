@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import sistema.compra.e.vendas.entity.Nota;
 import sistema.compra.e.vendas.util.Conexao;
 
@@ -60,4 +62,26 @@ public class NotaDAO {
 
             return idGerado;
         }
+    
+        public List<Nota> getNotas() {
+            String sql = "SELECT * FROM nota";
+            List<Nota> lista = new ArrayList<>();
+            try (PreparedStatement stmt = conn.prepareStatement(sql);
+                 ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Nota n = new Nota();
+                    n.setCod_nota(rs.getInt("cod_nota"));
+                    n.setTipo(rs.getString("tipo"));
+                    n.setData(rs.getString("data")); 
+                    n.setCod_cliente(rs.getInt("cod_cliente"));
+                    n.setCod_fornecedor(rs.getInt("cod_fornecedor"));
+                    lista.add(n);
+                }
+            } catch (SQLException e) {
+                System.out.println("Erro ao listar notas: " + e.getMessage());
+                return null;
+            }
+            return lista;
+        }
+
 }

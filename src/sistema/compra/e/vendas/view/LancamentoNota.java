@@ -93,6 +93,11 @@ public class LancamentoNota extends javax.swing.JFrame {
         jLabel7.setText("data");
 
         btnSalvar.setText("salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("limpar campos");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +180,10 @@ public class LancamentoNota extends javax.swing.JFrame {
         cmb_cod.setSelectedIndex(0);
         cmb_produto.setSelectedIndex(0);
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * @param args the command line arguments

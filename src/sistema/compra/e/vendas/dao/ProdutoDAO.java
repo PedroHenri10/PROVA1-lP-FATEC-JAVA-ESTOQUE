@@ -7,7 +7,10 @@ package sistema.compra.e.vendas.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import sistema.compra.e.vendas.entity.Produto;
 import sistema.compra.e.vendas.util.Conexao;
 
@@ -39,29 +42,24 @@ public class ProdutoDAO {
         }
     }
 
-    public List<Produto> listarTodos() {
-        List<Produto> produtos = new ArrayList<>();
-        String sql = "SELECT * FROM produto;";
-        
-        try {
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
-            
-            while (rs.next()) {
-                Produto p = new Produto();
-                p.setCod_Produto(rs.getInt("cod_produto"));
-                p.setNome(rs.getString("nome"));
-                p.setDescricao(rs.getString("descricao"));
-                p.setPreco_venda(rs.getFloat("preco_venda"));
-                p.setQtd_estoque(rs.getInt("qtd_estoque"));
-                
-                produtos.add(p);
+        public List<Produto> getProdutos() {
+            String sql = "SELECT * FROM produto";
+            List<Produto> lista = new ArrayList<>();
+            try (PreparedStatement stmt = conn.prepareStatement(sql);
+                 ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Produto p = new Produto();
+                    p.setCod_Produto(rs.getInt("cod_produto"));
+                    p.setNome(rs.getString("nome"));
+                    p.setDescricao(rs.getString("descricao"));
+                    p.setPreco_venda(rs.getFloat("preco_venda"));
+                    p.setQtd_estoque(rs.getInt("qtd_estoque"));
+                    lista.add(p);
+                }
+            } catch (SQLException e) {
+                System.out.println("Erro ao listar produtos: " + e.getMessage());
+                return null;
             }
-            
-        } catch (SQLException ex) {
-            System.out.println("Erro ao listar produtos: " + ex.getMessage());
-        }
-        
-        return produtos;
+            return lista;
     }
 }

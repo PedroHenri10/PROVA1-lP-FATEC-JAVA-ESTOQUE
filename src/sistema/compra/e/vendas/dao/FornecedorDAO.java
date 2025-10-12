@@ -7,7 +7,10 @@ package sistema.compra.e.vendas.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import sistema.compra.e.vendas.entity.Fornecedor;
 import sistema.compra.e.vendas.util.Conexao;
 
@@ -41,14 +44,11 @@ public class FornecedorDAO {
         }
     }
 
-    public List<Fornecedor> listarTodos() {
-        List<Fornecedor> fornecedores = new ArrayList<>();
-        String sql = "SELECT * FROM fornecedor;";
-        
-        try {
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
-            
+    public List<Fornecedor> getFornecedores() {
+        String sql = "SELECT * FROM fornecedor";
+        List<Fornecedor> lista = new ArrayList<>();
+        try (PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 Fornecedor f = new Fornecedor();
                 f.setCod_fornecedor(rs.getInt("cod_fornecedor"));
@@ -58,15 +58,14 @@ public class FornecedorDAO {
                 f.setEndereco(rs.getString("endereco"));
                 f.setEmail(rs.getString("email"));
                 f.setTelefone(rs.getString("telefone"));
-                
-                fornecedores.add(f);
+                lista.add(f);
             }
-            
-        } catch (SQLException ex) {
-            System.out.println("Erro ao listar fornecedores: " + ex.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Erro ao listar fornecedores: " + e.getMessage());
+            return null;
         }
-        
-        return fornecedores;
+        return lista;
     }
+
     
 }

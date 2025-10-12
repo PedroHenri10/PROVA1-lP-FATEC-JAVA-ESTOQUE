@@ -4,9 +4,12 @@
  * and open the template in the editor.
  */
 package sistema.compra.e.vendas.dao;
+import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import sistema.compra.e.vendas.entity.Cliente;
 import sistema.compra.e.vendas.util.Conexao;
 /**
@@ -38,14 +41,11 @@ public class ClienteDAO {
         }
     }
 
-    public List<Cliente> listarTodos() {
-        List<Cliente> clientes = new ArrayList<>();
-        String sql = "SELECT * FROM cliente;";
-        
-        try {
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
-            
+    public List<Cliente> getClientes() {
+        String sql = "SELECT * FROM cliente";
+        List<Cliente> lista = new ArrayList<>();
+        try (PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 Cliente c = new Cliente();
                 c.setCod_Cliente(rs.getInt("cod_Cliente"));
@@ -53,15 +53,14 @@ public class ClienteDAO {
                 c.setEndereco(rs.getString("endereco"));
                 c.setEmail(rs.getString("email"));
                 c.setTelefone(rs.getString("telefone"));
-                
-                clientes.add(c);
+                lista.add(c);
             }
-            
-        } catch (SQLException ex) {
-            System.out.println("Erro ao listar clientes: " + ex.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Erro ao listar clientes: " + e.getMessage());
+            return null;
         }
-        
-        return clientes;
+        return lista;
     }
+
     
 }
