@@ -9,6 +9,8 @@ import sistema.compra.e.vendas.view.CadastroCliente;
 import sistema.compra.e.vendas.view.CadastroFornecedor;
 import sistema.compra.e.vendas.view.CadastroProduto;
 import sistema.compra.e.vendas.view.LancamentoNota;
+import sistema.compra.e.vendas.view.RelatorioClientes;
+import sistema.compra.e.vendas.view.RelatorioFornecedores;
 
 /**
  *
@@ -208,19 +210,19 @@ public class SistemaCompraEvenda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProdutoActionPerformed
 
     private void btnListarProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarProdutosActionPerformed
-        // TODO add your handling code here:
+        new RelatorioProdutos().setVisible(true);
     }//GEN-LAST:event_btnListarProdutosActionPerformed
 
     private void btnListarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarClientesActionPerformed
-        // TODO add your handling code here:
+        new RelatorioClientes().setVisible(true);
     }//GEN-LAST:event_btnListarClientesActionPerformed
 
     private void btnListarFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarFornecedoresActionPerformed
-        // TODO add your handling code here:
+        new RelatorioFornecedores().setVisible(true);
     }//GEN-LAST:event_btnListarFornecedoresActionPerformed
 
     private void btnListarNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarNotasActionPerformed
-        // TODO add your handling code here:
+        //new RelatorioNotas().setVisible(true);
     }//GEN-LAST:event_btnListarNotasActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
