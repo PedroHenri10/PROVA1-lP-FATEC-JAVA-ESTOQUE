@@ -5,7 +5,7 @@
  */
 package sistema.compra.e.vendas.view;
 
-import java.awt.List;
+import java.util.List;
 import sistema.compra.e.vendas.dao.ClienteDAO;
 import sistema.compra.e.vendas.dao.FornecedorDAO;
 import sistema.compra.e.vendas.dao.ProdutoDAO;
@@ -36,20 +36,20 @@ public class LancamentoNota extends javax.swing.JFrame {
 
             if ("Entrada".equals(tipoNota)) { 
                 FornecedorDAO fornecedorDAO = new FornecedorDAO();
-                List<Fornecedor> fornecedores = fornecedorDAO.listarTodos();
+                List<Fornecedor> fornecedores = fornecedorDAO.getFornecedores();
                 for (Fornecedor f : fornecedores) {
                     cmb_cod.addItem(String.valueOf(f.getCod_fornecedor())); 
                 }
             } else if ("Saida".equals(tipoNota)) { 
                 ClienteDAO clienteDAO = new ClienteDAO();
-                List<Cliente> clientes = clienteDAO.listarTodos();
+                List<Cliente> clientes = clienteDAO.getClientes();
                 for (Cliente c : clientes) {
                     cmb_cod.addItem(String.valueOf(c.getCod_Cliente())); 
                 }
             }
 
             ProdutoDAO produtoDAO = new ProdutoDAO();
-            List<Produto> produtos = produtoDAO.listarTodos();
+            List<Produto> produtos = produtoDAO.getProdutos();
             for (Produto p : produtos) {
                 cmb_produto.addItem(String.valueOf(p.getCod_Produto())); 
             }
