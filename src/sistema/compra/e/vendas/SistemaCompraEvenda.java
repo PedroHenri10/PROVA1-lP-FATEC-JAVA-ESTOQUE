@@ -11,6 +11,7 @@ import sistema.compra.e.vendas.view.CadastroProduto;
 import sistema.compra.e.vendas.view.LancamentoNota;
 import sistema.compra.e.vendas.view.RelatorioClientes;
 import sistema.compra.e.vendas.view.RelatorioFornecedores;
+import sistema.compra.e.vendas.view.RelatorioProdutos;
 
 /**
  *
