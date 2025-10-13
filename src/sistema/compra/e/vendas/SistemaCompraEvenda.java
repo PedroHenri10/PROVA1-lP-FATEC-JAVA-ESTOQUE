@@ -5,6 +5,11 @@
  */
 package sistema.compra.e.vendas;
 
+import javax.swing.JOptionPane;
+import sistema.compra.e.vendas.dao.ClienteDAO;
+import sistema.compra.e.vendas.dao.FornecedorDAO;
+import sistema.compra.e.vendas.dao.NotaDAO;
+import sistema.compra.e.vendas.dao.ProdutoDAO;
 import sistema.compra.e.vendas.view.CadastroCliente;
 import sistema.compra.e.vendas.view.CadastroFornecedor;
 import sistema.compra.e.vendas.view.CadastroProduto;
@@ -231,7 +236,49 @@ public class SistemaCompraEvenda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        // TODO add your handling code here:
+        String[] opcoes = {"Cliente", "Fornecedor", "Produto", "Nota"};
+        String escolha = (String) JOptionPane.showInputDialog(
+            this,
+            "Escolha o tipo de cadastro que deseja excluir:",
+            "Excluir",
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            opcoes,
+            opcoes[0]
+        );
+
+        if (escolha == null) return;
+
+        String idStr = JOptionPane.showInputDialog(this, "Digite o código do " + escolha + " para excluir:");
+        if (idStr == null || idStr.isEmpty()) return;
+
+        int id = Integer.parseInt(idStr);
+
+        int confirm = JOptionPane.showConfirmDialog(this,
+            "Tem certeza que deseja excluir o " + escolha + " de código " + id + "?",
+            "Confirmação",
+            JOptionPane.YES_NO_OPTION);
+
+        if (confirm != JOptionPane.YES_OPTION) return;
+
+        switch (escolha) {
+            case "Cliente":
+                new ClienteDAO().excluirCliente(id);
+                JOptionPane.showMessageDialog(this, "Cliente excluído com sucesso!");
+                break;
+            case "Fornecedor":
+                new FornecedorDAO().excluirFornecedor(id);
+                JOptionPane.showMessageDialog(this, "Fornecedor excluído com sucesso!");
+                break;
+            case "Produto":
+                new ProdutoDAO().excluirProduto(id);
+                JOptionPane.showMessageDialog(this, "Produto excluído com sucesso!");
+                break;
+            case "Nota":
+                new NotaDAO().excluirNota(id);
+                JOptionPane.showMessageDialog(this, "Nota excluída com sucesso!");
+                break;
+        }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
