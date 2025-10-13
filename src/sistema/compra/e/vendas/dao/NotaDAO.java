@@ -84,4 +84,34 @@ public class NotaDAO {
             return lista;
         }
 
+        public Nota consultarPorId(int id) {
+            String sql = "SELECT n.*, c.nome AS nome_cliente, f.nome AS nome_fornecedor " +
+                         "FROM nota n " +
+                         "LEFT JOIN cliente c ON n.cod_cliente = c.cod_cliente " +
+                         "LEFT JOIN fornecedor f ON n.cod_fornecedor = f.cod_fornecedor " +
+                         "WHERE n.cod_nota = ?";
+            try {
+                PreparedStatement stmt = conn.prepareStatement(sql, 
+                        ResultSet.TYPE_SCROLL_INSENSITIVE,
+                        ResultSet.CONCUR_UPDATABLE);
+
+                stmt.setInt(1, id);
+                ResultSet rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    Nota n = new Nota();
+                    n.setCod_nota(rs.getInt("cod_nota"));
+                    n.setTipo(rs.getString("tipo"));
+                    n.setData(rs.getString("data"));
+                    n.setCod_cliente(rs.getInt("cod_cliente"));
+                    n.setCod_fornecedor(rs.getInt("cod_fornecedor"));
+
+                    return n;
+                }
+            } catch (SQLException ex) {
+                System.out.println("Erro ao consultar nota: " + ex.getMessage());
+            }
+            return null;
+        }
+
 }
