@@ -84,7 +84,7 @@ public class NotaDAO {
             return lista;
         }
 
-        public Nota consultarPorId(int id) {
+        public Nota getNota(int id) {
             String sql = "SELECT n.*, c.nome AS nome_cliente, f.nome AS nome_fornecedor " +
                          "FROM nota n " +
                          "LEFT JOIN cliente c ON n.cod_cliente = c.cod_cliente " +

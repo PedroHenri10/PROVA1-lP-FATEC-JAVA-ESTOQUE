@@ -330,7 +330,7 @@ public class SistemaCompraEvenda extends javax.swing.JFrame {
 
             case "Produto":
                 ProdutoDAO pdao = new ProdutoDAO();
-                Produto p = pdao.consultarPorId(id);
+                Produto p = pdao.getProduto(id);
                 if (p != null)
                     JOptionPane.showMessageDialog(this, "Produto encontrado:\n\n" +
                         "Nome: " + p.getNome() + "\n" +
@@ -343,7 +343,7 @@ public class SistemaCompraEvenda extends javax.swing.JFrame {
 
             case "Nota":
                 NotaDAO ndao = new NotaDAO();
-                Nota n = ndao.consultarPorId(id);
+                Nota n = ndao.getNota(id);
                 if (n != null)
                     JOptionPane.showMessageDialog(this, "Nota encontrada:\n\n" +
                         "Tipo: " + n.getTipo() + "\n" +

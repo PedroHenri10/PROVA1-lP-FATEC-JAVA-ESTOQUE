@@ -63,7 +63,7 @@ public class ProdutoDAO {
             return lista;
     }
         
-        public Produto consultarPorId(int id) {
+        public Produto getProduto(int id) {
             String sql = "SELECT * FROM produto WHERE cod_produto = ?";
             try {
                 PreparedStatement stmt = conn.prepareStatement(sql, 
