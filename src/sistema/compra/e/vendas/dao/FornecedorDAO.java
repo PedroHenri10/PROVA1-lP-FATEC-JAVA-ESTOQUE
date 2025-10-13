@@ -94,4 +94,34 @@ public class FornecedorDAO {
         return null;
     }
 
+    public void editarFornecedor(Fornecedor f) {
+    String sql = "UPDATE fornecedor SET nome=?, nome_fantasia=?, cnpj=?, endereco=?, email=?, telefone=? WHERE cod_fornecedor=?";
+    try {
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, f.getNome());
+        stmt.setString(2, f.getNome_fantasia());
+        stmt.setString(3, f.getCnpj());
+        stmt.setString(4, f.getEndereco());
+        stmt.setString(5, f.getEmail());
+        stmt.setString(6, f.getTelefone());
+        stmt.setInt(7, f.getCod_fornecedor());
+        stmt.executeUpdate();
+        System.out.println("Fornecedor atualizado com sucesso!");
+    } catch (SQLException ex) {
+        System.out.println("Erro ao atualizar fornecedor: " + ex.getMessage());
+    }
+}
+
+public void excluirFornecedor(int id) {
+    String sql = "DELETE FROM fornecedor WHERE cod_fornecedor=?";
+    try {
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setInt(1, id);
+        stmt.executeUpdate();
+        System.out.println("Fornecedor excluído com sucesso!");
+    } catch (SQLException ex) {
+        System.out.println("Erro ao excluir fornecedor: " + ex.getMessage());
+    }
+}
+    
 }
