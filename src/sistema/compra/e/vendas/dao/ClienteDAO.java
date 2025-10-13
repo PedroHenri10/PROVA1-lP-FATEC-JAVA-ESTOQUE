@@ -88,31 +88,31 @@ public class ClienteDAO {
     }
 
     public void editarCliente(Cliente cliente) {
-    String sql = "UPDATE cliente SET nome=?, endereco=?, email=?, telefone=? WHERE cod_cliente=?";
-    try {
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setString(1, cliente.getNome());
-        stmt.setString(2, cliente.getEndereco());
-        stmt.setString(3, cliente.getEmail());
-        stmt.setString(4, cliente.getTelefone());
-        stmt.setInt(5, cliente.getCod_Cliente());
-        stmt.executeUpdate();
-        System.out.println("Cliente atualizado com sucesso!");
-    } catch (SQLException ex) {
-        System.out.println("Erro ao atualizar cliente: " + ex.getMessage());
+        String sql = "UPDATE cliente SET nome=?, endereco=?, email=?, telefone=? WHERE cod_cliente=?";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, cliente.getNome());
+            stmt.setString(2, cliente.getEndereco());
+            stmt.setString(3, cliente.getEmail());
+            stmt.setString(4, cliente.getTelefone());
+            stmt.setInt(5, cliente.getCod_Cliente());
+            stmt.executeUpdate();
+            System.out.println("Cliente atualizado com sucesso!");
+        } catch (SQLException ex) {
+            System.out.println("Erro ao atualizar cliente: " + ex.getMessage());
+        }
     }
-}
 
-public void excluirCliente(int id) {
-    String sql = "DELETE FROM cliente WHERE cod_cliente=?";
-    try {
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setInt(1, id);
-        stmt.executeUpdate();
-        System.out.println("Cliente excluído com sucesso!");
-    } catch (SQLException ex) {
-        System.out.println("Erro ao excluir cliente: " + ex.getMessage());
+    public void excluirCliente(int id) {
+        String sql = "DELETE FROM cliente WHERE cod_cliente=?";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            System.out.println("Cliente excluído com sucesso!");
+        } catch (SQLException ex) {
+            System.out.println("Erro ao excluir cliente: " + ex.getMessage());
+        }
     }
-}
     
 }

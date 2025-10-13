@@ -115,31 +115,31 @@ public class NotaDAO {
         }
     
       public void editarNota(Nota n) {
-    String sql = "UPDATE nota SET tipo=?, data=?, cod_cliente=?, cod_fornecedor=? WHERE cod_nota=?";
-    try {
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setString(1, n.getTipo());
-        stmt.setString(2, n.getData());
-        stmt.setInt(3, n.getCod_cliente());
-        stmt.setInt(4, n.getCod_fornecedor());
-        stmt.setInt(5, n.getCod_nota());
-        stmt.executeUpdate();
-        System.out.println("Nota atualizada com sucesso!");
-    } catch (SQLException ex) {
-        System.out.println("Erro ao atualizar nota: " + ex.getMessage());
+        String sql = "UPDATE nota SET tipo=?, data=?, cod_cliente=?, cod_fornecedor=? WHERE cod_nota=?";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, n.getTipo());
+            stmt.setString(2, n.getData());
+            stmt.setInt(3, n.getCod_cliente());
+            stmt.setInt(4, n.getCod_fornecedor());
+            stmt.setInt(5, n.getCod_nota());
+            stmt.executeUpdate();
+            System.out.println("Nota atualizada com sucesso!");
+        } catch (SQLException ex) {
+            System.out.println("Erro ao atualizar nota: " + ex.getMessage());
+        }
     }
-}
 
-public void excluirNota(int id) {
-    String sql = "DELETE FROM nota WHERE cod_nota=?";
-    try {
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setInt(1, id);
-        stmt.executeUpdate();
-        System.out.println("Nota excluída com sucesso!");
-    } catch (SQLException ex) {
-        System.out.println("Erro ao excluir nota: " + ex.getMessage());
+    public void excluirNota(int id) {
+        String sql = "DELETE FROM nota WHERE cod_nota=?";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            System.out.println("Nota excluída com sucesso!");
+        } catch (SQLException ex) {
+            System.out.println("Erro ao excluir nota: " + ex.getMessage());
+        }
     }
-}
     
 }
