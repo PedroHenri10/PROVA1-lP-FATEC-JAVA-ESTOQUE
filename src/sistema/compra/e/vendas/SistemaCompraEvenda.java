@@ -20,6 +20,7 @@ import sistema.compra.e.vendas.view.CadastroProduto;
 import sistema.compra.e.vendas.view.LancamentoNota;
 import sistema.compra.e.vendas.view.RelatorioClientes;
 import sistema.compra.e.vendas.view.RelatorioFornecedores;
+import sistema.compra.e.vendas.view.RelatorioNotas;
 import sistema.compra.e.vendas.view.RelatorioProdutos;
 
 /**
@@ -232,7 +233,7 @@ public class SistemaCompraEvenda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListarFornecedoresActionPerformed
 
     private void btnListarNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarNotasActionPerformed
-        //new RelatorioNotas().setVisible(true);
+        new RelatorioNotas().setVisible(true);
     }//GEN-LAST:event_btnListarNotasActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
