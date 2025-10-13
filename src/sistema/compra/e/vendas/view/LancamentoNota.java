@@ -6,11 +6,14 @@
 package sistema.compra.e.vendas.view;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import sistema.compra.e.vendas.dao.ClienteDAO;
 import sistema.compra.e.vendas.dao.FornecedorDAO;
+import sistema.compra.e.vendas.dao.NotaDAO;
 import sistema.compra.e.vendas.dao.ProdutoDAO;
 import sistema.compra.e.vendas.entity.Cliente;
 import sistema.compra.e.vendas.entity.Fornecedor;
+import sistema.compra.e.vendas.entity.Nota;
 import sistema.compra.e.vendas.entity.Produto;
 
 /**
