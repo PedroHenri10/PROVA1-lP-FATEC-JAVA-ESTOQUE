@@ -62,4 +62,30 @@ public class ProdutoDAO {
             }
             return lista;
     }
+        
+        public Produto consultarPorId(int id) {
+            String sql = "SELECT * FROM produto WHERE cod_produto = ?";
+            try {
+                PreparedStatement stmt = conn.prepareStatement(sql, 
+                        ResultSet.TYPE_SCROLL_INSENSITIVE,
+                        ResultSet.CONCUR_UPDATABLE);
+
+                stmt.setInt(1, id);
+                ResultSet rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    Produto p = new Produto();
+                    p.setCod_Produto(rs.getInt("cod_produto"));
+                    p.setNome(rs.getString("nome"));
+                    p.setDescricao(rs.getString("descricao"));
+                    p.setPreco_venda(rs.getFloat("preco_venda"));
+                    p.setQtd_estoque(rs.getInt("qtd_estoque"));
+                    return p;
+                }
+            } catch (SQLException ex) {
+                System.out.println("Erro ao consultar produto: " + ex.getMessage());
+            }
+            return null;
+        }
+
 }
