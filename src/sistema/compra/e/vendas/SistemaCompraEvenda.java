@@ -10,6 +10,10 @@ import sistema.compra.e.vendas.dao.ClienteDAO;
 import sistema.compra.e.vendas.dao.FornecedorDAO;
 import sistema.compra.e.vendas.dao.NotaDAO;
 import sistema.compra.e.vendas.dao.ProdutoDAO;
+import sistema.compra.e.vendas.entity.Cliente;
+import sistema.compra.e.vendas.entity.Fornecedor;
+import sistema.compra.e.vendas.entity.Nota;
+import sistema.compra.e.vendas.entity.Produto;
 import sistema.compra.e.vendas.view.CadastroCliente;
 import sistema.compra.e.vendas.view.CadastroFornecedor;
 import sistema.compra.e.vendas.view.CadastroProduto;
@@ -232,10 +236,6 @@ public class SistemaCompraEvenda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListarNotasActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeletarActionPerformed
-
-    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         String[] opcoes = {"Cliente", "Fornecedor", "Produto", "Nota"};
         String escolha = (String) JOptionPane.showInputDialog(
             this,
@@ -277,6 +277,81 @@ public class SistemaCompraEvenda extends javax.swing.JFrame {
             case "Nota":
                 new NotaDAO().excluirNota(id);
                 JOptionPane.showMessageDialog(this, "Nota excluída com sucesso!");
+                break;
+        }
+    }//GEN-LAST:event_btnDeletarActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        String[] opcoes = {"Cliente", "Fornecedor", "Produto", "Nota"};
+        String escolha = (String) JOptionPane.showInputDialog(
+            this,
+            "Escolha o tipo de cadastro para consultar:",
+            "Consultar",
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            opcoes,
+            opcoes[0]
+        );
+
+        if (escolha == null) return;
+
+        String idStr = JOptionPane.showInputDialog(this, "Digite o código do " + escolha + ":");
+        if (idStr == null || idStr.isEmpty()) return;
+
+        int id = Integer.parseInt(idStr);
+
+        switch (escolha) {
+            case "Cliente":
+                ClienteDAO cdao = new ClienteDAO();
+                Cliente cli = cdao.getCliente(id);
+                if (cli != null)
+                    JOptionPane.showMessageDialog(this, "Cliente encontrado:\n\n" +
+                        "Nome: " + cli.getNome() + "\n" +
+                        "Endereço: " + cli.getEndereco() + "\n" +
+                        "Email: " + cli.getEmail() + "\n" +
+                        "Telefone: " + cli.getTelefone());
+                else
+                    JOptionPane.showMessageDialog(this, "Cliente não encontrado!");
+                break;
+
+            case "Fornecedor":
+                FornecedorDAO fdao = new FornecedorDAO();
+                Fornecedor f = fdao.getFornecedor(id);
+                if (f != null)
+                    JOptionPane.showMessageDialog(this, "Fornecedor encontrado:\n\n" +
+                        "Nome: " + f.getNome() + "\n" +
+                        "Fantasia: " + f.getNome_fantasia() + "\n" +
+                        "CNPJ: " + f.getCnpj() + "\n" +
+                        "Email: " + f.getEmail() + "\n" +
+                        "Telefone: " + f.getTelefone());
+                else
+                    JOptionPane.showMessageDialog(this, "Fornecedor não encontrado!");
+                break;
+
+            case "Produto":
+                ProdutoDAO pdao = new ProdutoDAO();
+                Produto p = pdao.consultarPorId(id);
+                if (p != null)
+                    JOptionPane.showMessageDialog(this, "Produto encontrado:\n\n" +
+                        "Nome: " + p.getNome() + "\n" +
+                        "Descrição: " + p.getDescricao() + "\n" +
+                        "Preço: " + p.getPreco_venda() + "\n" +
+                        "Estoque: " + p.getQtd_estoque());
+                else
+                    JOptionPane.showMessageDialog(this, "Produto não encontrado!");
+                break;
+
+            case "Nota":
+                NotaDAO ndao = new NotaDAO();
+                Nota n = ndao.consultarPorId(id);
+                if (n != null)
+                    JOptionPane.showMessageDialog(this, "Nota encontrada:\n\n" +
+                        "Tipo: " + n.getTipo() + "\n" +
+                        "Data: " + n.getData() + "\n" +
+                        "Cliente: " + n.getCod_cliente() + "\n" +
+                        "Fornecedor: " + n.getCod_fornecedor());
+                else
+                    JOptionPane.showMessageDialog(this, "Nota não encontrada!");
                 break;
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
