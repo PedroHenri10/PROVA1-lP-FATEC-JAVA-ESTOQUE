@@ -83,6 +83,28 @@ public class NotaDAO {
             }
             return lista;
         }
+        
+           public List<Nota> getNotasPorTipo(String tipo) {
+                String sql = "SELECT * FROM nota WHERE tipo = ?";
+                List<Nota> lista = new ArrayList<>();
+                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                    stmt.setString(1, tipo);
+                    try (ResultSet rs = stmt.executeQuery()) {
+                        while (rs.next()) {
+                            Nota n = new Nota();
+                            n.setCod_nota(rs.getInt("cod_nota"));
+                            n.setTipo(rs.getString("tipo"));
+                            n.setData(rs.getString("data"));
+                            n.setCod_cliente(rs.getInt("cod_cliente"));
+                            n.setCod_fornecedor(rs.getInt("cod_fornecedor"));
+                            lista.add(n);
+                        }
+                    }
+                } catch (SQLException e) {
+                    System.out.println("Erro ao listar notas por tipo: " + e.getMessage());
+                }
+                return lista;
+            }
 
         public Nota getNota(int id) {
             String sql = "SELECT n.*, c.nome AS nome_cliente, f.nome AS nome_fornecedor " +
