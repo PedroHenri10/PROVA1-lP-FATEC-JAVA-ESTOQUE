@@ -182,7 +182,40 @@ public class LancamentoNota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        Nota nota = new Nota();
+        nota.setTipo(this.tipo); 
+
+        String data = txt_data.getText();
+        if (data.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, insira a data da nota.");
+            return;
+        }
+        nota.setData(data);
+
+        String codSelecionadoStr = (String) cmb_cod.getSelectedItem();
+        if (codSelecionadoStr == null || codSelecionadoStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecione um código de " + (tipo.equals("Entrada") ? "fornecedor" : "cliente") + ".");
+            return;
+        }
+int codSelecionado = Integer.parseInt(codSelecionadoStr);
+
+        if (this.tipo.equals("Entrada")) {
+            nota.setCod_fornecedor(codSelecionado);
+            nota.setCod_cliente(0); 
+        } else if (this.tipo.equals("Saida")) {
+            nota.setCod_cliente(codSelecionado);
+            nota.setCod_fornecedor(0);
+        }
         
+       NotaDAO notaDAO = new NotaDAO();
+        int idNotaGerado = notaDAO.inserirNota(nota);
+
+        if (idNotaGerado != -1) {
+            JOptionPane.showMessageDialog(this, "Nota lançada com sucesso! Código da Nota: " + idNotaGerado);
+            btnLimparActionPerformed(evt); 
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao lançar a nota. Verifique os dados.");
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
