@@ -358,7 +358,39 @@ public class SistemaCompraEvenda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        // TODO add your handling code here:
+        String[] opcoes = {"Cliente", "Fornecedor", "Produto"};
+        int escolha = JOptionPane.showOptionDialog(
+            this,
+            "Qual tipo de registro você deseja atualizar?",
+            "Atualizar Registro",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            opcoes,
+            opcoes[0]
+        );
+
+        switch (escolha) {
+            case 0: 
+                AtualizaCliente atualizaCliente = new AtualizaCliente();
+                atualizaCliente.setLocationRelativeTo(this);
+atualizaCliente.setVisible(true);
+                break;
+            case 1: 
+                AtualizaFornecedor atualizaFornecedor = new AtualizaFornecedor();
+                atualizaFornecedor.setLocationRelativeTo(this);
+                atualizaFornecedor.setVisible(true);
+                break;
+            case 2: 
+                AtualizaProduto atualizaProduto = new AtualizaProduto();
+                atualizaProduto.setLocationRelativeTo(this);
+                atualizaProduto.setVisible(true);
+                break;
+            case JOptionPane.CLOSED_OPTION:
+                
+                System.out.println("Nenhuma opção de atualização selecionada.");
+break;
+        }
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnCadastroFornecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroFornecActionPerformed
