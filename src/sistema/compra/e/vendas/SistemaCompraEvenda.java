@@ -14,6 +14,8 @@ import sistema.compra.e.vendas.entity.Cliente;
 import sistema.compra.e.vendas.entity.Fornecedor;
 import sistema.compra.e.vendas.entity.Nota;
 import sistema.compra.e.vendas.entity.Produto;
+import sistema.compra.e.vendas.view.AtualizarCliente;
+import sistema.compra.e.vendas.view.AtualizarFornecedor;
 import sistema.compra.e.vendas.view.CadastroCliente;
 import sistema.compra.e.vendas.view.CadastroFornecedor;
 import sistema.compra.e.vendas.view.CadastroProduto;
@@ -372,19 +374,19 @@ public class SistemaCompraEvenda extends javax.swing.JFrame {
 
         switch (escolha) {
             case 0: 
-                AtualizaCliente atualizaCliente = new AtualizaCliente();
-                atualizaCliente.setLocationRelativeTo(this);
-atualizaCliente.setVisible(true);
+                AtualizarCliente atualizarCliente = new AtualizarCliente();
+                atualizarCliente.setLocationRelativeTo(this);
+                atualizarCliente.setVisible(true);
                 break;
             case 1: 
-                AtualizaFornecedor atualizaFornecedor = new AtualizaFornecedor();
-                atualizaFornecedor.setLocationRelativeTo(this);
-                atualizaFornecedor.setVisible(true);
+                AtualizarFornecedor atualizarFornecedor = new AtualizarFornecedor();
+                atualizarFornecedor.setLocationRelativeTo(this);
+                atualizarFornecedor.setVisible(true);
                 break;
             case 2: 
-                AtualizaProduto atualizaProduto = new AtualizaProduto();
-                atualizaProduto.setLocationRelativeTo(this);
-                atualizaProduto.setVisible(true);
+//                AtualizaProduto atualizaProduto = new AtualizaProduto();
+  //              atualizaProduto.setLocationRelativeTo(this);
+    //            atualizaProduto.setVisible(true);
                 break;
             case JOptionPane.CLOSED_OPTION:
                 

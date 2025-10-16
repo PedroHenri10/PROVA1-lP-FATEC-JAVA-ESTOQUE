@@ -4,9 +4,9 @@ import javax.swing.JOptionPane;
 import sistema.compra.e.vendas.dao.FornecedorDAO;
 import sistema.compra.e.vendas.entity.Fornecedor;
 
-public class AtualizaFornecedor extends javax.swing.JFrame {
+public class AtualizarFornecedor extends javax.swing.JFrame {
 
-    public AtualizaFornecedor() {
+    public AtualizarFornecedor() {
         initComponents();
         limparCampos();
     }
@@ -194,7 +194,7 @@ public class AtualizaFornecedor extends javax.swing.JFrame {
         try {
             int codFornecedor = Integer.parseInt(txtCodFornecedor.getText());
             FornecedorDAO dao = new FornecedorDAO();
-            Fornecedor fornecedor = dao.consultarPorId(codFornecedor);
+            Fornecedor fornecedor = dao.getFornecedor(codFornecedor);
 
             if (fornecedor != null) {
                 preencherCampos(fornecedor);
@@ -250,18 +250,18 @@ public class AtualizaFornecedor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AtualizaFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtualizarFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AtualizaFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtualizarFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AtualizaFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtualizarFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AtualizaFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AtualizarFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AtualizaFornecedor().setVisible(true);
+                new AtualizarFornecedor().setVisible(true);
             }
         });
     }
