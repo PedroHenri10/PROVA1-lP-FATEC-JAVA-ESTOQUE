@@ -4,9 +4,9 @@ import javax.swing.JOptionPane;
 import sistema.compra.e.vendas.dao.ProdutoDAO;
 import sistema.compra.e.vendas.entity.Produto;
 
-public class AtualizaProduto extends javax.swing.JFrame {
+public class AtualizarProduto extends javax.swing.JFrame {
 
-    public AtualizaProduto() {
+    public AtualizarProduto() {
         initComponents();
         limparCampos();
     }
@@ -17,6 +17,7 @@ public class AtualizaProduto extends javax.swing.JFrame {
         txtDescricao.setText("");
         txtPrecoVenda.setText("");
         txtQtdEstoque.setText("");
+
         txtNome.setEditable(false);
         txtDescricao.setEditable(false);
         txtPrecoVenda.setEditable(false);
@@ -29,6 +30,7 @@ public class AtualizaProduto extends javax.swing.JFrame {
         txtDescricao.setText(produto.getDescricao());
         txtPrecoVenda.setText(String.valueOf(produto.getPreco_venda()));
         txtQtdEstoque.setText(String.valueOf(produto.getQtd_estoque()));
+
         txtNome.setEditable(true);
         txtDescricao.setEditable(true);
         txtPrecoVenda.setEditable(true);
@@ -63,11 +65,7 @@ public class AtualizaProduto extends javax.swing.JFrame {
         jLabel2.setText("Código do Produto:");
 
         btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
+        btnBuscar.addActionListener(evt -> btnBuscarActionPerformed(evt));
 
         jLabel3.setText("Nome:");
 
@@ -78,18 +76,10 @@ public class AtualizaProduto extends javax.swing.JFrame {
         jLabel6.setText("Quantidade em Estoque:");
 
         btnAtualizar.setText("Atualizar");
-        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtualizarActionPerformed(evt);
-            }
-        });
+        btnAtualizar.addActionListener(evt -> btnAtualizarActionPerformed(evt));
 
         btnLimpar.setText("Limpar Campos");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimparActionPerformed(evt);
-            }
-        });
+        btnLimpar.addActionListener(evt -> btnLimparActionPerformed(evt));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,3 +123,97 @@ public class AtualizaProduto extends javax.swing.JFrame {
                     .addComponent(txtCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtPrecoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtQtdEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAtualizar)
+                    .addComponent(btnLimpar))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
+        pack();
+    }
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {
+        if (txtCodProduto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Informe o código do produto para buscar.");
+            return;
+        }
+        try {
+            int codProduto = Integer.parseInt(txtCodProduto.getText());
+            ProdutoDAO dao = new ProdutoDAO();
+            Produto produto = dao.getProduto(codProduto);
+
+            if (produto != null) {
+                preencherCampos(produto);
+            } else {
+                JOptionPane.showMessageDialog(this, "Produto não encontrado.");
+                limparCampos();
+                txtCodProduto.setEditable(true);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Código do produto inválido. Digite um número.");
+            limparCampos();
+        }
+    }
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {
+        if (txtCodProduto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "É necessário buscar um produto antes de atualizar.");
+            return;
+        }
+        
+        try {
+            Produto produto = new Produto();
+            produto.setCod_Produto(Integer.parseInt(txtCodProduto.getText()));
+            produto.setNome(txtNome.getText());
+            produto.setDescricao(txtDescricao.getText());
+            produto.setPreco_venda(Float.parseFloat(txtPrecoVenda.getText()));
+            produto.setQtd_estoque(Integer.parseInt(txtQtdEstoque.getText()));
+
+            ProdutoDAO dao = new ProdutoDAO();
+            dao.editarProduto(produto);
+            JOptionPane.showMessageDialog(this, "Produto atualizado com sucesso!");
+            limparCampos();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Erro: valores numéricos inválidos.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao atualizar produto: " + e.getMessage());
+        }
+    }
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {
+        limparCampos();
+        txtCodProduto.setEditable(true);
+    }
+
+    // Declaração dos componentes
+    private javax.swing.JButton btnAtualizar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnLimpar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField txtCodProduto;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtDescricao;
+    private javax.swing.JTextField txtPrecoVenda;
+    private javax.swing.JTextField txtQtdEstoque;
+}

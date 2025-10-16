@@ -16,6 +16,7 @@ import sistema.compra.e.vendas.entity.Nota;
 import sistema.compra.e.vendas.entity.Produto;
 import sistema.compra.e.vendas.view.AtualizarCliente;
 import sistema.compra.e.vendas.view.AtualizarFornecedor;
+import sistema.compra.e.vendas.view.AtualizarProduto;
 import sistema.compra.e.vendas.view.CadastroCliente;
 import sistema.compra.e.vendas.view.CadastroFornecedor;
 import sistema.compra.e.vendas.view.CadastroProduto;
@@ -384,9 +385,9 @@ public class SistemaCompraEvenda extends javax.swing.JFrame {
                 atualizarFornecedor.setVisible(true);
                 break;
             case 2: 
-//                AtualizaProduto atualizaProduto = new AtualizaProduto();
-  //              atualizaProduto.setLocationRelativeTo(this);
-    //            atualizaProduto.setVisible(true);
+                AtualizarProduto atualizarProduto = new AtualizarProduto();
+                atualizarProduto.setLocationRelativeTo(this);
+                atualizarProduto.setVisible(true);
                 break;
             case JOptionPane.CLOSED_OPTION:
                 
