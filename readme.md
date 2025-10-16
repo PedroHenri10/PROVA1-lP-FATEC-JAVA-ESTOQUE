@@ -9,6 +9,8 @@ O sistema tem como objetivo gerenciar cadastros de produtos, clientes, fornecedo
 
 O projeto segue uma arquitetura em camadas:
 
+```shell
+  
 📦 sistema-compra-e-vendas
 │
 ├── 📁 dao/                  → Classes de acesso ao banco (CRUD)
@@ -39,6 +41,7 @@ O projeto segue uma arquitetura em camadas:
 │   └── RelatorioNotas.java
 │
 └── SistemaCompraEvenda.java  → Classe principal (menu e navegação)
+``` 
 
 ## ⚙️ Funcionalidades
 
@@ -85,6 +88,7 @@ Após o download, adicione o arquivo .jar ao Classpath do projeto:
 1. Abra o MySQL Workbench ou outro cliente.
 2. Crie o banco:
 
+```
 CREATE DATABASE p1estoque;
 USE p1estoque;
 
@@ -134,6 +138,8 @@ CREATE TABLE itemnota (
   FOREIGN KEY (cod_produto) REFERENCES produto(cod_produto)
 );
 
+```
+
 ▶️ Como Executar no NetBeans
 
 1. Abra o NetBeans
@@ -160,10 +166,28 @@ O menu principal será exibido com as opções:
 
 - Lançamento de nota Saida
 
-- Relatórios guagem dela de relatório lista os registros cadastrados no banco, com botões para:
+---
 
-Atualizar a lista
+Cada tela de relatório exibe os registros cadastrados com opções para:
+ 
+🔄 Atualizar a lista
+ 
+⬅️ Voltar ao menu principal
+ 
+🔍 Filtrar por tipo (no caso das notas) 
+ 
+---
+ 
+👨‍💻 Autor
+ 
+Pedro Henrique
 
-Voltar ao menu principal
+FATEC — Linguagem de Programação (Java)
 
-Filtrar por tipo (no caso de notas)ficas em Swing e manipulação de banco de dados MySQL.
+Projeto: Sistema de Controle de Estoque (P1)
+
+---
+
+🧠 Observação
+ 
+Este projeto foi desenvolvido com foco em prática de CRUD com JDBC, interfaces gráficas em Swing e manipulação de banco de dados MySQL.
